@@ -15,8 +15,10 @@ services:
       - immobrnet
     depends_on:
       - postgres
-    env_file:
-      - ./.env
+    environment:
+      - JWT_SECRET_KEY=%45ht&IfA64RTnLUaSWi4daDigJn%k%m
+      - JWT_DURATION=30
+      - ENVIRONMENT=PRODUCTION
 
   nginx:
     build:
@@ -32,8 +34,10 @@ services:
 
   postgres:
     image: postgres:15.3-alpine3.18
-    env_file:
-      - ./.env
+    environment:
+      - POSTGRES_USER=immobr
+      - POSTGRES_PASSWORD=immobr
+      - POSTGRES_DB=immobr
     ports:
       - "5432"
     networks:
